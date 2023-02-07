@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     PlayerControls inputs;
+    PlayerHelper helper;
     Vector2 lookInput => inputs.Player.Look.ReadValue<Vector2>();
     Vector2 movementDirection => inputs.Player.Move.ReadValue<Vector2>();
-
+    [SerializeField] float activeMovementSpeed;
 
     private void Awake()
     {
@@ -27,16 +28,25 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
+        helper = GetComponent<PlayerHelper>();
         
     }
 
     void Update()
     {
-        
+        Animate();
     }
-
+    private void FixedUpdate()
+    {
+        Movement();
+    }
     void Movement()
     {
-        //helper.Rb.MovePosition(transform.position + (direction * activeMovementSpeed * Time.deltaTime));
+        Vector3 direction = movementDirection;
+        helper.Rb.MovePosition(transform.position + (direction * activeMovementSpeed * Time.deltaTime));
+    }
+    void Animate()
+    {
+        helper.Anim.SetFloat("Speed", inputs.Player.Move.ReadValue<Vector2>().magnitude);
     }
 }

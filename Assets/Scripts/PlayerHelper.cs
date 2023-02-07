@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PlayerHelper : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Rigidbody Rb { get; private set; }
+    public CharacterController Controller { get; private set; }
+    public Animator Anim { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        Rb = GetComponent<Rigidbody>();
+        Controller = GetComponent<CharacterController>();
+        Anim = GetComponent<Animator>();
     }
 }
