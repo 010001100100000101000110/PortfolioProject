@@ -7,7 +7,7 @@ public class PlayerHelper : MonoBehaviour
     public Rigidbody Rb { get; private set; }
     public CharacterController Controller { get; private set; }
     public Animator Anim { get; private set; }
-
+    [field: SerializeField]public SOPlayerStats Stats { get; private set; }
     private void Awake()
     {
         Rb = GetComponent<Rigidbody>();

@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerControls inputs;
     PlayerHelper helper;
     Vector2 lookInput => inputs.Player.Look.ReadValue<Vector2>();
-    Vector2 movementDirection => inputs.Player.Move.ReadValue<Vector2>();
+    Vector2 movementDirection => inputs.Player.Move.ReadValue<Vector2>().normalized;
     [SerializeField] float activeMovementSpeed;
 
     private void Awake()
@@ -48,5 +48,6 @@ public class PlayerMovement : MonoBehaviour
     void Animate()
     {
         helper.Anim.SetFloat("Speed", inputs.Player.Move.ReadValue<Vector2>().magnitude);
+
     }
 }
